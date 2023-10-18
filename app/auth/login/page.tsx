@@ -1,4 +1,5 @@
-import React, { ReactNode } from "react";
+"use client";
+import React, { useState } from "react";
 import Layout from "@/app/auth/auth-layout";
 import Image from "next/image";
 
@@ -7,6 +8,7 @@ import googleLogo from "@/public/svgs/auth/login.google.logo.svg";
 import facebookLogo from "@/public/svgs/auth/login.facebook.logo.svg";
 import appleLogo from "@/public/svgs/auth/login.apple.logo.svg";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import CustomInput from "@/components/CustomInput";
 
 function LoginOptionCard({
   logo,
@@ -26,6 +28,7 @@ function LoginOptionCard({
 }
 
 export default function LoginPage() {
+  const [email, setEmail] = useState("");
   return (
     <Layout placeholderImg={placeholderSvg}>
       <div className="flex flex-col gap-y-6">
@@ -35,9 +38,12 @@ export default function LoginPage() {
             خوش برگشتی! لطفا اطلاعاتت رو وارد کن.
           </span>
         </div>
-        <div className="flex flex-col gap-y-[26px] bg-red-500 p-2">
-          <input type="text" />
-          <input type="text" />
+        <div className="flex flex-col gap-y-[26px] p-2">
+          <CustomInput
+            label="ایمیل"
+            onChange={setEmail}
+            placeholder="Email..."
+          />
         </div>
         <div className="flex flex-col gap-y-2">
           <button className="bg-blue-500 rounded-[14px] p-[13px] text-white shadow ">

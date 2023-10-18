@@ -14,7 +14,7 @@ export default function AuthLayout({ children, placeholderImg }: TProps) {
       </section>
       <section
         className="p-6 bg-white rounded-t-[34px]"
-        style={{ boxShadow: "0px 1px 20px 0px rgba(129, 129, 129, 0.16);" }}
+        style={{ boxShadow: "0px 1px 20px 0px rgba(129, 129, 129, 0.16)" }}
       >
         {children}
       </section>

@@ -9,9 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.14",
     "next": "^13.5.5-canary.19",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "rtl-detect": "^1.0.4",
+    "stylis": "^4.3.0",
+    "stylis-plugin-rtl": "^2.1.1"
   },
   "devDependencies": {
     "@types/node": "^20",
