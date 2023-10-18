@@ -40,8 +40,9 @@ export default function LoginPage() {
         </div>
         <div className="flex flex-col gap-y-[26px] p-2">
           <CustomInput
+            id="email"
             label="ایمیل"
-            onChange={setEmail}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Email..."
           />
         </div>
