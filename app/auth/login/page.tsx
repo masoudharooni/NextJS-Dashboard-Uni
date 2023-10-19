@@ -67,7 +67,7 @@ export default function LoginPage() {
             id="email"
             label="ایمیل"
             onChange={(e) => setEmail(e.target.value)}
-            // value={email}
+            value={email}
           />
           <CustomInput
             id="username"
