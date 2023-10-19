@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/base": "^5.0.0-beta.20",
     "@mui/material": "^5.14.14",
+    "@mui/styles": "^5.14.14",
     "next": "^13.5.5-canary.19",
     "react": "^18",
     "react-dom": "^18",
