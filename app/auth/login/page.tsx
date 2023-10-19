@@ -33,8 +33,8 @@ export default function LoginPage() {
     <Layout placeholderImg={placeholderSvg}>
       <div className="flex flex-col gap-y-6">
         <div className="flex flex-col items-center gap-y-2.5">
-          <h1 className="font-vazirBold text-[26px]">Login</h1>
-          <span className="font-vazirLight text-sm">
+          <h1 className="font-vazirBold text-[26px] md:text-[36px]">Login</h1>
+          <span className="font-vazirLight text-sm md:text-[16px]">
             خوش برگشتی! لطفا اطلاعاتت رو وارد کن.
           </span>
         </div>
@@ -43,14 +43,20 @@ export default function LoginPage() {
             id="email"
             label="ایمیل"
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email..."
+            placeholder="masoudharooni50@gmail.com"
+          />
+          <CustomInput
+            id="email"
+            label="ایمیل"
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="masoudharooni50@gmail.com"
           />
         </div>
         <div className="flex flex-col gap-y-2">
-          <button className="bg-blue-500 rounded-[14px] p-[13px] text-white shadow ">
+          <button className="bg-blue-500 rounded-[14px] p-[13px] md:p-[17px] text-white shadow text-sm md:text-[16px]">
             ورود
           </button>
-          <button className="p-[9px] rounded-[14px] text-blue-500 font-vazirLight text-sm">
+          <button className="p-[9px] rounded-[14px] text-blue-500 font-vazirLight text-sm md:text-[16px]">
             فراموشی رمز عبور
           </button>
         </div>
