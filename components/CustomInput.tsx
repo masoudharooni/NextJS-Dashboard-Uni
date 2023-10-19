@@ -29,7 +29,11 @@ export default function CustomInput(props: TProps) {
   return (
     <CacheProvider value={cacheRtl}>
       <ThemeProvider theme={rtlTheme}>
-        <TextField {...props} onChange={(e) => props.onChange(e)} />
+        <TextField
+          {...props}
+          inputProps={{ style: { padding: "", borderRadius: "" } }}
+          onChange={(e) => props.onChange(e)}
+        />
       </ThemeProvider>
     </CacheProvider>
   );
