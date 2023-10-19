@@ -14,7 +14,8 @@ import rtlPlugin from "stylis-plugin-rtl";
 import { prefixer } from "stylis";
 
 import useTheme from "@/hooks/useTheme";
-import "./styles.module.css";
+
+import styled from "styled-components";
 type TProps = TextFieldProps & {
   onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 };
@@ -35,16 +36,28 @@ const cacheRtl = createCache({
 export default function CustomInput(props: TProps) {
   const theme = useTheme();
 
+  const CustomTextField = styled(TextField)`
+    & .MuiOutlinedInput-root {
+      border-radius: 14px;
+      border-color: #d1e6ff;
+    }
+    & .MuiInputBase-input {
+      color: ${() => (theme === "light" ? "#39434F" : "#fff")};
+      font-family: "vazir";
+    }
+    & .MuiInputLabel-root {
+      color: #808b9a;
+      font-family: "vazirBold";
+    }
+    & .MuiInputBase-input::placeholder {
+      color: ${() => (theme === "light" ? "#D9DFE6" : "#606873")};
+      font-family: "vazirLight";
+    }
+  `;
   return (
     <CacheProvider value={cacheRtl}>
       <ThemeProvider theme={rtlTheme}>
-        <TextField
-          {...props}
-          className={
-            theme === "dark" ? "customTextFieldDark" : "customTextField"
-          }
-          onChange={(e) => props.onChange(e)}
-        />
+        <CustomTextField {...props} onChange={(e) => props.onChange(e)} />
       </ThemeProvider>
     </CacheProvider>
   );
