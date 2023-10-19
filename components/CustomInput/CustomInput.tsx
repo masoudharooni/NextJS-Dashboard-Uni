@@ -7,13 +7,14 @@ import {
   ThemeProvider,
   createTheme,
 } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 import rtlPlugin from "stylis-plugin-rtl";
 import { prefixer } from "stylis";
 
+import useTheme from "@/hooks/useTheme";
+import "./styles.module.css";
 type TProps = TextFieldProps & {
   onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 };
@@ -31,35 +32,17 @@ const cacheRtl = createCache({
   stylisPlugins: [prefixer, rtlPlugin],
 });
 
-const useStyles = makeStyles({
-  textField: {
-    "& .MuiOutlinedInput-root": {
-      borderRadius: "14px",
-      borderColor: "#D1E6FF",
-    },
-    "& .MuiInputBase-input": {
-      color: "#39434F",
-      fontFamily: "vazir",
-    },
-    "& .MuiInputLabel-root": {
-      color: "#808B9A",
-      fontFamily: "vazirBold",
-    },
-    "& .MuiInputBase-input::placeholder": {
-      color: "#D9DFE6",
-      fontFamily: "vazirLight",
-    },
-  },
-});
-
 export default function CustomInput(props: TProps) {
-  const classes = useStyles();
+  const theme = useTheme();
+
   return (
     <CacheProvider value={cacheRtl}>
       <ThemeProvider theme={rtlTheme}>
         <TextField
           {...props}
-          className={classes.textField}
+          className={
+            theme === "dark" ? "customTextFieldDark" : "customTextField"
+          }
           onChange={(e) => props.onChange(e)}
         />
       </ThemeProvider>
