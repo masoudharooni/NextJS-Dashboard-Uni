@@ -1,9 +1,9 @@
 import ThemeSwitcher from "@/components/themeSwitcher";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Trading Journal",
@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${inter.className} bg-white dark:bg-[#2A3240]`}>
+      <body className={`bg-white dark:bg-[#2A3240]`}>
         {children}
         <ThemeSwitcher />
       </body>

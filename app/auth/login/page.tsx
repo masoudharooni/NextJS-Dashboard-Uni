@@ -17,14 +17,16 @@ import useTheme from "@/hooks/useTheme";
 function LoginOptionCard({
   logo,
   text,
+  imageKey,
 }: {
   logo: string | StaticImport;
   text: string;
+  imageKey?: React.Key;
 }) {
   return (
     <button className="flex gap-x-4 px-4 py-2 shadow w-full rounded-[14px] dark:bg-gray-700 ">
       <div className="pl-4 ml-4 border-l border-gray-200">
-        <Image src={logo} alt={text} />
+        <Image src={logo} alt={text} key={imageKey} />
       </div>
       <span className="text-sm text-gray-500 dark:text-[#ECEFF2] font-medium">
         {text}
@@ -92,10 +94,12 @@ export default function LoginPage() {
           <LoginOptionCard
             logo={theme === "dark" ? facebookDarkLogo : facebookLogo}
             text="ورود با حساب فیسبوک"
+            imageKey={theme}
           />
           <LoginOptionCard
             logo={theme === "dark" ? appleDarkLogo : appleLogo}
             text="ورود با اپل آیدی"
+            imageKey={theme}
           />
         </div>
       </div>

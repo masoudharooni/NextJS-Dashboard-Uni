@@ -15,6 +15,7 @@ export default function AuthLayout({ children, placeholderImg }: TProps) {
             src={placeholderImg}
             alt="placeholder image"
             className="w-full h-full"
+            // key={placeholderImg}
           />
         </div>
       </section>
