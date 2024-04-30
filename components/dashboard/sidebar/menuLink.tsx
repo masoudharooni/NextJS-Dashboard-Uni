@@ -15,7 +15,7 @@ export default function MenuLink({ title, path, Icon, isActive }: TProps) {
                 } hover:dark:bg-[#2e374a] hover:bg-[#d3dcf5] rounded-lg transition-all ease-in-out duration-100`}
         >
             <span>
-                <Icon size={20} />
+                <Icon size={22} />
             </span>
             <span>{title}</span>
         </Link>
