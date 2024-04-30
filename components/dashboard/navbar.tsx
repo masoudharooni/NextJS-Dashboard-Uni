@@ -25,13 +25,13 @@ export default function Navbar() {
                     onChange={(e) => setSearch(e.target.value)}
                 />
 
-                <button className="cursor-pointer hover:dark:bg-[#2e374a] active:scale-110 hover:bg-[#d9e4ff] rounded-full p-2 transition-all ease-in-out delay-75 duration-100">
+                <button className="relative hover:-top-0.5 cursor-pointer hover:dark:bg-[#2e374a] active:scale-110 hover:bg-[#d9e4ff] rounded-full p-2 transition-all ease-in-out delay-75 duration-100">
                     <MdOutlineChat size={20} />
                 </button>
-                <button className="cursor-pointer hover:dark:bg-[#2e374a] active:scale-110 hover:bg-[#d9e4ff] rounded-full p-2 transition-all ease-in-out delay-75 duration-100">
+                <button className="relative hover:-top-0.5 duration-500cursor-pointer hover:dark:bg-[#2e374a] active:scale-110 hover:bg-[#d9e4ff] rounded-full p-2 transition-all ease-in-out delay-75 duration-100">
                     <MdNotifications size={20} />
                 </button>
-                <button className="cursor-pointer hover:dark:bg-[#2e374a] active:scale-110 hover:bg-[#d9e4ff] rounded-full p-2 transition-all ease-in-out delay-75 duration-100">
+                <button className="relative hover:-top-0.5 duration-500cursor-pointer hover:dark:bg-[#2e374a] active:scale-110 hover:bg-[#d9e4ff] rounded-full p-2 transition-all ease-in-out delay-75 duration-100">
                     <MdPublic size={20} />
                 </button>
             </ul>

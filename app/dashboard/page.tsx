@@ -12,12 +12,16 @@ export default function DashboardPage() {
                     <Card />
                     <Card />
                 </div>
-                <Transactions />
-                <Chart />
+                <div className="mt-5">
+                    <Transactions />
+                </div>
+                <div className="mt-5">
+                    <Chart />
+                </div>
             </div>
             <div className="flex-1 bg-blue-400">
                 <Rightbar />
             </div>
         </section>
     );
-} 
+}

@@ -9,7 +9,7 @@ export default function DashboardLayoutPage({
 }) {
     return (
         <main className="flex">
-            <div className="flex-1 bg-bgSoftLight dark:bg-bgSoft p-5">
+            <div className="flex-1 bg-bgSoftLight dark:bg-bgSoft p-5 h-screen">
                 <Sidebar />
             </div>
             <div className="flex-[4] p-5">
