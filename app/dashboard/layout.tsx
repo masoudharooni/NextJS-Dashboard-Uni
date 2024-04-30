@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import Navbar from "@/components/dashboard/navbar/navbar";
+import Navbar from "@/components/dashboard/navbar";
 import Sidebar from "@/components/dashboard/sidebar/sidebar";
 
 export default function DashboardLayoutPage({
@@ -14,7 +14,9 @@ export default function DashboardLayoutPage({
             </div>
             <div className="flex-[4] p-5">
                 <Navbar />
-                {children}
+                <div className="mt-5">
+                    {children}
+                </div>
             </div>
         </main>
     );
