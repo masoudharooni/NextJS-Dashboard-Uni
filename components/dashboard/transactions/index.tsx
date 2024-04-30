@@ -2,8 +2,8 @@ import Image from "next/image";
 import styles from "./transactions.module.css";
 export const Transactions = () => {
     return (
-        <section className="p-5 rounded-[10px] dark:bg-bgSoft bg-bgSoftLight">
-            <h2 className="mt-5 font-extralight dark:text-textSoft text-textSoftLight">
+        <section className="py-3 px-5 rounded-[10px] dark:bg-bgSoft bg-bgSoftLight">
+            <h2 className="mb-3 font-extralight dark:text-textSoft text-textSoftLight">
                 آخرین معاملات
             </h2>
             <table className={`w-full ${styles.table}`}>
