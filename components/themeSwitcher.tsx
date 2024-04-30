@@ -28,11 +28,6 @@ export default function ThemeSwitcher() {
       setTheme("dark");
       document.documentElement.classList.add("dark");
     }
-
-    console.log(
-      "Them classList: ",
-      document.documentElement.classList.contains("dark")
-    );
   }, []);
   return (
     <button
