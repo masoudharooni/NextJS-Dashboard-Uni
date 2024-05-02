@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 export default function Sidebar() {
     const pathname = usePathname();
     return (
-        <aside className="flex flex-col gap-y-5 sticky top-10 p-2.5">
+        <aside className="flex flex-col gap-y-5 p-2.5">
             <User username="مسعود هارونی" role="مدیر سیستم" />
             <ul className="flex flex-col gap-y-1">
                 {menuItems.map((category) => (

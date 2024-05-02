@@ -19,7 +19,7 @@ export default function DashboardPage() {
                     <Chart />
                 </div>
             </div>
-            <div className="flex-1 bg-blue-400">
+            <div className="flex-1">
                 <Rightbar />
             </div>
         </section>

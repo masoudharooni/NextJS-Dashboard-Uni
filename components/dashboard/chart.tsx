@@ -75,6 +75,8 @@ export const Chart = () => {
                     <Tooltip
                         contentStyle={{
                             backgroundColor: theme === "dark" ? "#151c2c" : "#f0f5ff",
+                            borderRadius: "10px",
+                            borderColor: "#7e7e7e"
                         }}
                     />
                     <Legend />
