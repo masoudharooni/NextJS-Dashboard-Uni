@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Image from "next/image";
 import { MdPlayCircleFilled, MdReadMore } from "react-icons/md";
 
@@ -15,14 +16,13 @@ const Rightbar = () => {
                 </div>
                 <div className="flex flex-col gap-6">
                     <span className="font-bold">🔥 الان در دسترسه</span>
-                    <h3 className="">
-                        چطور از نسخه جدید داشبورد ادمین استفاده کنیم؟
-                    </h3>
+                    <h3 className="">چطور از نسخه جدید داشبورد ادمین استفاده کنیم؟</h3>
                     <span className="dark:text-textSoft text-textSoftLight font-medium text-xs">
                         فقط چهار دقیقه برای یادگرفتنش وقت بذار...
                     </span>
                     <p className="dark:text-textSoft text-textSoftLight text-sm">
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                        استفاده از طراحان گرافیک است
                     </p>
                     <button className="z-10 active:scale-110 transition-all ease-in-out duration-150 delay-75 p-2.5 flex items-center gap-2.5 w-max bg-[#8e88e7] text-white border-none rounded-md cursor-pointer">
                         ببین
@@ -52,4 +52,4 @@ const Rightbar = () => {
     );
 };
 
-export default Rightbar;
+export default memo(Rightbar);
