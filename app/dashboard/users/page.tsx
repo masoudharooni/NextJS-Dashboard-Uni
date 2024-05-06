@@ -4,6 +4,7 @@ import Search from "@/components/dashboard/users/search";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "@/components/dashboard/users/users.module.css";
+import Pagination from "@/components/dashboard/pagination/pagination";
 export default function UsersPage() {
     const [search, setSearch] = useState("");
     const deleteUser = () => { };
@@ -38,37 +39,35 @@ export default function UsersPage() {
                                     alt=""
                                     width={40}
                                     height={40}
-                                className={styles.userImage}
+                                    className={styles.userImage}
                                 />
                                 {/* {user.username} */}
                             </div>
                         </td>
                         <td>masoudharooni</td>
-                        <td>{"user.createdAt?.toString().slice(4, 16)"}</td>
-                        <td>{"user.isAdmin" ? "Admin" : "Client"}</td>
-                        <td>{"user.isActive" ? "active" : "passive"}</td>
+                        <td>13.01.2022</td>
+                        <td>Admin</td>
+                        <td>Active</td>
                         <td>
                             <div className="flex gap-2.5">
-                                <Link href={`/dashboard/users/${"user.id"}`}>
+                                <Link href={`/`}>
                                     <button
                                         className={`py-[5px] px-[10px] rounded-md dark:text-text text-textLight border-none cursor-pointer dark:bg-teal-700 bg-teal-400`}
                                     >
                                         View
                                     </button>
                                 </Link>
-                                <form action={deleteUser}>
-                                    <input type="hidden" name="id" value={"user.id"} />
-                                    <button
-                                        className={`py-[5px] px-[10px] rounded-md dark:text-text text-textLight border-none cursor-pointer dark:bg-rose-700 bg-rose-400`}
-                                    >
-                                        Delete
-                                    </button>
-                                </form>
+                                <button
+                                    className={`py-[5px] px-[10px] rounded-md dark:text-text text-textLight border-none cursor-pointer dark:bg-rose-700 bg-rose-400`}
+                                >
+                                    Delete
+                                </button>
                             </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
+            <Pagination />
         </section>
     );
 }
