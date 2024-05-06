@@ -12,7 +12,7 @@ export default function UsersPage() {
     return (
         <section className="dark:bg-bgSoft bg-bgSoftLight p-5 rounded-[10px] mt-5">
             <div className="flex justify-between">
-                <Search value={search} onChange={(e) => setSearch(e.target.value)} />
+                <Search placeholder="یک کاربر را جست‌وجو کنید..." value={search} onChange={(e) => setSearch(e.target.value)} />
                 <Link href="/dashboard/users/add">
                     <button className="p-2.5 text-text bg-[#8e88e7] dark:bg-[#5d57c9] rounded-md">
                         افزودن
