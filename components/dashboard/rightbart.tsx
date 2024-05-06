@@ -24,7 +24,7 @@ const Rightbar = () => {
                         لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
                         استفاده از طراحان گرافیک است
                     </p>
-                    <button className="z-10 active:scale-110 transition-all ease-in-out duration-150 delay-75 p-2.5 flex items-center gap-2.5 w-max bg-[#8e88e7] text-white border-none rounded-md cursor-pointer">
+                    <button className="z-10 active:scale-110 transition-all ease-in-out duration-150 delay-75 p-2.5 flex items-center gap-2.5 w-max bg-[#8e88e7] dark:bg-[#5d57c9] text-white border-none rounded-md cursor-pointer">
                         ببین
                         <MdPlayCircleFilled />
                     </button>
@@ -42,7 +42,7 @@ const Rightbar = () => {
                         استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در
                         ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز
                     </p>
-                    <button className="p-2.5 active:scale-110 transition-all ease-in-out duration-150 delay-75 flex items-center gap-2.5 w-max bg-[#8e88e7] text-white border-none rounded-md cursor-pointer">
+                    <button className="p-2.5 active:scale-110 transition-all ease-in-out duration-150 delay-75 flex items-center gap-2.5 w-max bg-[#8e88e7] dark:bg-[#5d57c9] text-white border-none rounded-md cursor-pointer">
                         یادبگیر
                         <MdReadMore />
                     </button>
