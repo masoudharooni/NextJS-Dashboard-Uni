@@ -11,6 +11,7 @@ type TFromData = {
     phone: string;
     isAdmin: boolean;
     isActive: boolean;
+    address: string;
 };
 
 type InputChangeEvent = React.ChangeEvent<
@@ -24,6 +25,7 @@ export default function AddUserPage() {
         phone: "",
         isAdmin: true,
         isActive: true,
+        address: "",
     });
     const changeHandler = (event: InputChangeEvent) => {
         const { name, value } = event.target;
@@ -81,7 +83,17 @@ export default function AddUserPage() {
                 options={isAdminOpitons}
                 onChange={changeHandler}
             />
-
+            <MuiInput
+                className="col-span-2"
+                multiline
+                rows={5}
+                name="address"
+                label="Address"
+                type="text"
+                placeholder="Please enter an Adress for this user..."
+                value={formData.address}
+                onChange={changeHandler}
+            />
             <div className="col-span-full">
                 <MuiButton sx={{ width: "100%" }} color="success" variant="contained">
                     Add

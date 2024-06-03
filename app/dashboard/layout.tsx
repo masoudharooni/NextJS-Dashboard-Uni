@@ -13,14 +13,9 @@ export default function DashboardLayoutPage({
             <div className="flex-1 bg-bgSoftLight dark:bg-bgSoft min-h-screen rounded-l-lg">
                 <Sidebar />
             </div>
-            <div className="flex-[4]">
+            <div className="flex-[4] relative min-h-screen">
                 <Navbar />
-                <div className="mt-5">
-                    {children}
-                </div>
-                <div className="mt-8">
-                    <Footer />
-                </div>
+                <div className="mt-5">{children}</div>
             </div>
         </main>
     );

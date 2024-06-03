@@ -55,7 +55,7 @@ export const Chart = () => {
   return (
     <div className="h-[450px] dark:bg-bgSoft bg-bgSoftLight p-5 rounded-[10px]">
       <h2 className="mb-4 font-extralight dark:text-textSoft text-bgSoftLight text-[20px]">
-        فعالیت هفتگی
+        Weekly activities
       </h2>
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
