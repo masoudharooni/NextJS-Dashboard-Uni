@@ -1,9 +1,9 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import useTheme from "@/hooks/useTheme";
 
 type TOption = {
     value: string | number;
@@ -22,8 +22,32 @@ export default function MuiSelect({
     label,
     options,
 }: TProps) {
+    const theme = useTheme();
     return (
-        <FormControl fullWidth sx={{direction: "rtl"}}>
+        <FormControl
+            fullWidth
+            sx={{
+                "& .MuiInputLabel-root": {
+                    color: "#ccc",
+                },
+                "& .MuiInputLabel-root.Mui-focused": {
+                    color: theme === "light" ? "#959595" : "white",
+                },
+                "& .MuiOutlinedInput-root": {
+                    backgroundColor: theme === "light" ? "#e3ebff" : "#182237",
+                    color: theme === "light" ? "#959595" : "white",
+                    "& fieldset": {
+                        borderColor: "#ccc",
+                    },
+                    "&:hover fieldset": {
+                        borderColor: "#959595",
+                    },
+                    "&.Mui-focused fieldset": {
+                        borderColor: "#cccc",
+                    },
+                },
+            }}
+        >
             <InputLabel id="demo-simple-select-label">{label}</InputLabel>
             <Select
                 labelId="demo-simple-select-label"
@@ -31,9 +55,20 @@ export default function MuiSelect({
                 value={value}
                 label={label}
                 onChange={handleChange}
+                MenuProps={{
+                    PaperProps: {
+                        style: {
+                            backgroundColor: theme === "light" ? "#e3ebff" : "#182237",
+                            color: theme === "light" ? "#959595" : "white",
+                        },
+                    },
+                }}
             >
                 {options.map(({ value, label }) => (
-                    <MenuItem key={value} value={value}>
+                    <MenuItem
+                        key={value}
+                        value={value}
+                    >
                         {label}
                     </MenuItem>
                 ))}
