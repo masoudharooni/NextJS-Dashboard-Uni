@@ -7,3 +7,6 @@
 body {
   font-family: "vazir" !important;
 }
+::-webkit-scrollbar {
+  width: 0px;
+}

@@ -17,7 +17,7 @@ export default function ProductsPage() {
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                 />
-                <Link href="/dashboard/users/add">
+                <Link href="/dashboard/products/add">
                     <button className="p-2.5 text-text bg-[#8e88e7] dark:bg-[#5d57c9] rounded-md">
                         add
                     </button>

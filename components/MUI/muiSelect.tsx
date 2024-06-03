@@ -2,7 +2,7 @@ import * as React from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select, { SelectProps } from "@mui/material/Select";
 import useTheme from "@/hooks/useTheme";
 
 type TOption = {
@@ -10,18 +10,10 @@ type TOption = {
     label: string | number;
 };
 type TProps = {
-    value: string;
-    handleChange: (event: SelectChangeEvent) => void;
-    label: string;
     options: TOption[];
 };
 
-export default function MuiSelect({
-    value,
-    handleChange,
-    label,
-    options,
-}: TProps) {
+export default function MuiSelect(props: TProps & SelectProps) {
     const theme = useTheme();
     return (
         <FormControl
@@ -48,13 +40,9 @@ export default function MuiSelect({
                 },
             }}
         >
-            <InputLabel id="demo-simple-select-label">{label}</InputLabel>
+            <InputLabel id="demo-simple-select-label">{props.label}</InputLabel>
             <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={value}
-                label={label}
-                onChange={handleChange}
+                {...props}
                 MenuProps={{
                     PaperProps: {
                         style: {
@@ -64,11 +52,8 @@ export default function MuiSelect({
                     },
                 }}
             >
-                {options.map(({ value, label }) => (
-                    <MenuItem
-                        key={value}
-                        value={value}
-                    >
+                {props.options.map(({ value, label }) => (
+                    <MenuItem key={value} value={value}>
                         {label}
                     </MenuItem>
                 ))}
