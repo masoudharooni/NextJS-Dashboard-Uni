@@ -13,6 +13,7 @@ import appleDarkLogo from "@/public/svgs/auth/login.apple.dark.logo.svg";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import CustomInput from "@/components/CustomInput/CustomInput";
 import useTheme from "@/hooks/useTheme";
+import MuiButton from "@/components/MUI/muiButton";
 
 function LoginOptionCard({
   logo,
@@ -25,7 +26,7 @@ function LoginOptionCard({
 }) {
   return (
     <button className="flex gap-x-4 px-4 py-2 shadow w-full rounded-[14px] dark:bg-gray-700 ">
-      <div className="pl-4 ml-4 border-l border-gray-200">
+      <div className="pr-4 mr-4 border-r border-gray-200">
         <Image src={logo} alt={text} key={imageKey} />
       </div>
       <span className="text-sm text-gray-500 dark:text-[#ECEFF2] font-medium">
@@ -61,44 +62,43 @@ export default function LoginPage() {
             Login
           </h1>
           <span className="font-vazirLight text-sm md:text-base dark:text-gray-200">
-            خوش برگشتی! لطفا اطلاعاتت رو وارد کن.
+            Welcome back! Please enter the information.
           </span>
         </div>
         <div className="flex flex-col gap-y-7 p-2">
           <CustomInput
             id="email"
-            label="ایمیل"
+            label="Email"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
           <CustomInput
             id="username"
-            label="نام کاربری"
+            label="Username"
             onChange={(e) => setUsername(e.target.value)}
             value={username}
           />
         </div>
         <div className="flex flex-col gap-y-2">
-          <button className="bg-blue-500 rounded-[14px] p-3 md:p-4 text-white shadow text-sm md:text-base">
-            ورود
-          </button>
-          <button className="p-[9px] rounded-[14px] text-blue-500 dark:text-blue-300 font-vazirLight text-sm md:text-base">
-            فراموشی رمز عبور
-          </button>
+          <MuiButton
+            color="primary"
+            sx={{ width: "100%", borderRadius: "12px", p: "12px" }}
+          >
+            Login
+          </MuiButton>
+          <MuiButton variant="text">Forget password</MuiButton>
         </div>
-        {/* separator */}
         <OrSeparator />
-        {/* singIn ways */}
         <div className="flex flex-col gap-y-5 items-center">
-          <LoginOptionCard logo={googleLogo} text="ورود با حساب گوگل" />
+          <LoginOptionCard logo={googleLogo} text="Login with Google" />
           <LoginOptionCard
             logo={theme === "dark" ? facebookDarkLogo : facebookLogo}
-            text="ورود با حساب فیسبوک"
+            text="Login with Facebook"
             imageKey={theme}
           />
           <LoginOptionCard
             logo={theme === "dark" ? appleDarkLogo : appleLogo}
-            text="ورود با اپل آیدی"
+            text="Login with Apple"
             imageKey={theme}
           />
         </div>

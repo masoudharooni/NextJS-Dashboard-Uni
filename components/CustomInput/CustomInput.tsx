@@ -7,32 +7,19 @@ import {
   ThemeProvider,
   createTheme,
 } from "@mui/material";
-
-import createCache from "@emotion/cache";
-import { CacheProvider } from "@emotion/react";
-import rtlPlugin from "stylis-plugin-rtl";
-import { prefixer } from "stylis";
-
 import useTheme from "@/hooks/useTheme";
-
 import styled from "styled-components";
 type TProps = TextFieldProps & {
   onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 };
-
 const rtlTheme = createTheme({
-  direction: "rtl",
+  direction: "ltr",
   palette: {
     primary: {
       main: "#1B85F3",
     },
   },
 });
-const cacheRtl = createCache({
-  key: "muirtl",
-  stylisPlugins: [prefixer, rtlPlugin],
-});
-
 export default function CustomInput(props: TProps) {
   const theme = useTheme();
 
@@ -43,22 +30,17 @@ export default function CustomInput(props: TProps) {
     }
     & .MuiInputBase-input {
       color: ${() => (theme === "light" ? "#39434F" : "#fff")};
-      font-family: "vazir";
     }
     & .MuiInputLabel-root {
       color: #808b9a;
-      font-family: "vazirBold";
     }
     & .MuiInputBase-input::placeholder {
       color: ${() => (theme === "light" ? "#D9DFE6" : "#606873")};
-      font-family: "vazirLight";
     }
   `;
   return (
-    <CacheProvider value={cacheRtl}>
-      <ThemeProvider theme={rtlTheme}>
-        <CustomTextField {...props} onChange={(e) => props.onChange(e)} />
-      </ThemeProvider>
-    </CacheProvider>
+    <ThemeProvider theme={rtlTheme}>
+      <CustomTextField {...props} onChange={(e) => props.onChange(e)} />
+    </ThemeProvider>
   );
 }

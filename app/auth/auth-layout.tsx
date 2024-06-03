@@ -10,12 +10,12 @@ export default function AuthLayout({ children, placeholderImg }: TProps) {
   return (
     <main className="flex flex-col md:flex-row gap-3 min-h-screen dark:bg-gray-800">
       <section className="flex justify-center md:items-center md:p-8 md:w-1/2 md:min-h-full">
-        <div className="w-full h-full bg-gray-50 dark:bg-inherit dark:md:bg-[#39434F] md:rounded-3xl md:px-5 md:py-32">
+        <div className="hidden xl:block w-full h-full bg-gray-50 dark:bg-inherit dark:md:bg-[#39434F] md:rounded-3xl md:px-5 md:py-32">
           <Image
             src={placeholderImg}
             alt="placeholder image"
             className="w-full h-full"
-            // key={placeholderImg}
+          // key={placeholderImg}
           />
         </div>
       </section>
