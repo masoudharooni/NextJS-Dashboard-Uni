@@ -6,7 +6,7 @@ import Select, { SelectProps } from "@mui/material/Select";
 import useTheme from "@/hooks/useTheme";
 
 type TOption = {
-    value: string | number;
+    value: string | number | boolean;
     label: string | number;
 };
 type TProps = {

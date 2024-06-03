@@ -2,59 +2,89 @@
 import { useState } from "react";
 import MuiSelect from "@/components/MUI/muiSelect";
 import MuiInput from "@/components/MUI/muiInput";
-import RoleEnum from "@/contracts/enums/roles";
-
 import MuiButton from "@/components/MUI/muiButton";
 
-type TRoleOptions = {
-    label: string;
-    value: RoleEnum;
+type TFromData = {
+    username: string;
+    email: string;
+    password: string;
+    phone: string;
+    isAdmin: boolean;
+    isActive: boolean;
 };
 
+type InputChangeEvent = React.ChangeEvent<
+    HTMLInputElement | HTMLTextAreaElement
+>;
 export default function AddUserPage() {
-    const [age, setAge] = useState("");
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [selectedRole, setSelectedRole] = useState("");
-    const [roleOptions, setRoleOptions] = useState<TRoleOptions[]>([
-        { label: "User", value: 0 },
-        { label: "Admin", value: 1 },
-    ]);
+    const [formData, setFormData] = useState<TFromData>({
+        username: "",
+        email: "",
+        password: "",
+        phone: "",
+        isAdmin: true,
+        isActive: true,
+    });
+    const changeHandler = (event: InputChangeEvent) => {
+        const { name, value } = event.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+    const isAdminOpitons = [
+        { label: "Yes", value: true },
+        { label: "No", value: false },
+    ];
     return (
-        <div className="grid grid-cols-2 gap-5 p-3">
+        <div className="grid md:grid-cols-2 gap-5 md:gap-10 px-5 ">
             <MuiInput
-                label="Name"
+                name="username"
+                label="Username"
                 type="text"
-                placeholder="Please enter your name"
-                value={name}
-                onChange={(e) => {
-                    setName(e.target.value);
-                }}
+                placeholder="Please enter the Username"
+                value={formData.username}
+                onChange={changeHandler}
             />
             <MuiInput
+                name="password"
+                label="Password"
+                type="password"
+                placeholder="Please enter the password"
+                value={formData.username}
+                onChange={changeHandler}
+            />
+            <MuiInput
+                name="email"
                 label="Email"
                 type="email"
-                placeholder="Please enter a valid email address"
-                value={email}
-                onChange={(e) => {
-                    setEmail(e.target.value);
-                }}
+                placeholder="Please enter the Email"
+                value={formData.email}
+                onChange={changeHandler}
+            />
+            <MuiInput
+                name="phone"
+                label="Phone Number"
+                type="tel"
+                placeholder="Please enter the Phone Number"
+                value={formData.phone}
+                onChange={changeHandler}
             />
             <MuiSelect
-                label="Role"
-                value={selectedRole}
-                options={roleOptions}
-                handleChange={(e) => setSelectedRole(e.target.value)}
+                name="isAdmin"
+                label="Is admin?"
+                value={formData.isAdmin}
+                options={isAdminOpitons}
+                onChange={changeHandler}
             />
+            <MuiSelect
+                name="isActive"
+                label="Is active?"
+                value={formData.isActive}
+                options={isAdminOpitons}
+                onChange={changeHandler}
+            />
+
             <div className="col-span-full">
-                <MuiButton color="success" variant="contained">
-                    Submit
-                </MuiButton>
-                <MuiButton color="error" variant="contained">
-                    Submit
-                </MuiButton>
-                <MuiButton color="primary" variant="contained">
-                    Submit
+                <MuiButton sx={{ width: "100%" }} color="success" variant="contained">
+                    Add
                 </MuiButton>
             </div>
         </div>
