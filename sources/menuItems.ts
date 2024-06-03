@@ -13,29 +13,29 @@ import {
 const menuItems = [
   {
     key: 1,
-    title: "صفحات",
+    title: "pages",
     list: [
       {
         key: 1,
-        title: "داشبورد",
+        title: "dashboard",
         path: "/dashboard",
         icon: MdDashboard,
       },
       {
         key: 2,
-        title: "کاربران",
+        title: "users",
         path: "/dashboard/users",
         icon: MdSupervisedUserCircle,
       },
       {
         key: 3,
-        title: "محصولات",
+        title: "products",
         path: "/dashboard/products",
         icon: MdShoppingBag,
       },
       {
         key: 4,
-        title: "معاملات",
+        title: "transactions",
         path: "/dashboard/transactions",
         icon: MdAttachMoney,
       },
@@ -43,23 +43,23 @@ const menuItems = [
   },
   {
     key: 2,
-    title: "تجزیه‌وتحلیل",
+    title: "analyze",
     list: [
       {
         key: 6,
-        title: "درآمد",
+        title: "income",
         path: "/dashboard/revenue",
         icon: MdWork,
       },
       {
         key: 7,
-        title: "گزارشات",
+        title: "reports",
         path: "/dashboard/reports",
         icon: MdAnalytics,
       },
       {
         key: 8,
-        title: "گروه‌ها",
+        title: "teams",
         path: "/dashboard/teams",
         icon: MdPeople,
       },
@@ -67,17 +67,17 @@ const menuItems = [
   },
   {
     key: 3,
-    title: "کاربر",
+    title: "user",
     list: [
       {
         key: 9,
-        title: "تنظیمات",
+        title: "settings",
         path: "/dashboard/settings",
         icon: MdOutlineSettings,
       },
       {
         key: 10,
-        title: "پشتیبانی",
+        title: "help",
         path: "/dashboard/help",
         icon: MdHelpCenter,
       },

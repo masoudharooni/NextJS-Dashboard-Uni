@@ -4,15 +4,15 @@ export const Transactions = () => {
     return (
         <section className="py-3 px-5 rounded-[10px] dark:bg-bgSoft bg-bgSoftLight">
             <h2 className="mb-3 font-extralight dark:text-textSoft text-textSoftLight">
-                آخرین معاملات
+                Latest Transactions
             </h2>
             <table className={`w-full ${styles.table}`}>
                 <thead>
                     <tr>
-                        <td>نام</td>
-                        <td>وضعیت</td>
-                        <td>تاریخ</td>
-                        <td>مقدار</td>
+                        <td>Name</td>
+                        <td>Status</td>
+                        <td>Date</td>
+                        <td>Amount</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,18 +26,18 @@ export const Transactions = () => {
                                     height={40}
                                     className="object-cover rounded-full"
                                 />
-                                مسعود هارونی
+                                Masoud Harooni
                             </div>
                         </td>
                         <td>
                             <span
                                 className={`dark:text-text text-textLight ${styles.pending} ${styles.status}`}
                             >
-                                درحال بررسی
+                                Pending
                             </span>
                         </td>
                         <td>1403/02/11</td>
-                        <td>120،000ريال</td>
+                        <td>120،000$</td>
                     </tr>
                     <tr>
                         <td>
@@ -49,18 +49,18 @@ export const Transactions = () => {
                                     height={40}
                                     className="object-cover rounded-full"
                                 />
-                                مسعود هارونی
+                                Masoud Harooni
                             </div>
                         </td>
                         <td>
                             <span
                                 className={`dark:text-text text-textLight ${styles.done} ${styles.status}`}
                             >
-                                انجام شده
+                                Done
                             </span>
                         </td>
                         <td>1403/02/11</td>
-                        <td>120،000ريال</td>
+                        <td>120،000$</td>
                     </tr>
                     <tr>
                         <td>
@@ -72,18 +72,18 @@ export const Transactions = () => {
                                     height={40}
                                     className="object-cover rounded-full"
                                 />
-                                مسعود هارونی
+                                Masoud Harooni
                             </div>
                         </td>
                         <td>
                             <span
                                 className={`dark:text-text text-textLight ${styles.cancel} ${styles.status}`}
                             >
-                                لغو شده
+                                Canceled
                             </span>
                         </td>
-                        <td>1403/02/11</td>
-                        <td>120،000ريال</td>
+                        <td>2024/02/14</td>
+                        <td>120،000$</td>
                     </tr>
                 </tbody>
             </table>

@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fa" dir="rtl">
+    <html lang="fa" dir="ltr">
       <body className={`bg-bgLight dark:bg-bg text-textLight dark:text-text p-5 pr-0`}>
         {children}
         <ThemeSwitcher />

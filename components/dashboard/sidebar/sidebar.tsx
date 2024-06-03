@@ -8,7 +8,7 @@ export default function Sidebar() {
     const pathname = usePathname();
     return (
         <aside className="flex flex-col gap-y-5 p-2.5">
-            <User username="مسعود هارونی" role="مدیر سیستم" />
+            <User username="Masoud Harooni" role="Adminstrator" />
             <ul className="flex flex-col gap-y-1">
                 {menuItems.map((category) => (
                     <li key={category.key}>

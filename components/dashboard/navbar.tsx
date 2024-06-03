@@ -16,7 +16,7 @@ export default function Navbar() {
             <span>{title}</span>
             <ul className="flex gap-x-5 items-center text-textLight dark:text-text">
                 <input
-                    placeholder="جست‌وجو کنید..."
+                    placeholder="Search..."
                     id="search"
                     type="search"
                     className="dark:bg-bg bg-bgLight p-2 rounded-md outline-none"
