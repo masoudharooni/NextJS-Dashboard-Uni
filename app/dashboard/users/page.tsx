@@ -7,6 +7,7 @@ import UserType from "@/contracts/types/userType";
 import usersSource from "@/sources/users";
 import MuiInput from "@/components/MUI/muiInput";
 import MuiSelect from "@/components/MUI/muiSelect";
+import MuiConfrimAlert from "@/components/MUI/muiConfirmAlert";
 const StatusCellComponent = (value: CustomCellRendererProps) => (
     <div className="w-full h-full py-3 flex items-center pr-3">
         <MuiButton color={value.data.status ? "success" : "error"}>
@@ -59,6 +60,8 @@ export default function UserPage() {
     useEffect(() => {
         setRowData(usersSource);
     }, []);
+    const [confirmState, setConfirmState] = useState(false);
+
     const submitHandler = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (userId === null) {
@@ -106,12 +109,26 @@ export default function UserPage() {
                 address: cellData.address,
             });
         };
+        const deleteHandler = () => {
+            setRowData((prev) => prev.filter((item) => item.id !== cellData.id));
+        };
+
         return (
             <div className="w-full h-full items-center flex gap-x-3">
                 <MuiButton color="success" onClick={visitHandler}>
                     Visit
                 </MuiButton>
-                <MuiButton color="error">Delete</MuiButton>
+                <MuiConfrimAlert
+                    header="Delete user"
+                    open={confirmState}
+                    setOpen={setConfirmState}
+                    text="Are you sure you want to delete this product?"
+                    onConfirm={deleteHandler}
+                >
+                    <MuiButton color="error" onClick={() => setConfirmState(true)}>
+                        Delete
+                    </MuiButton>
+                </MuiConfrimAlert>
             </div>
         );
     };
