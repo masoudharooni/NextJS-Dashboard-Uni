@@ -10,6 +10,7 @@ import productsSource from "@/sources/products";
 import AgGridComponent from "@/components/dashboard/grid";
 import MuiInput from "@/components/MUI/muiInput";
 import MuiSelect from "@/components/MUI/muiSelect";
+import MuiConfrimAlert from "@/components/MUI/muiConfirmAlert";
 
 const ColorCellComponent = (value: CustomCellRendererProps) => {
     return (
@@ -86,7 +87,7 @@ export default function ProductsPage() {
             setFormData(initialFormData);
             setProductId(null);
         } else {
-            console.log("formData: ", formData)
+            console.log("formData: ", formData);
             const data = {
                 title: formData.title,
                 category: formData.category,
@@ -119,12 +120,26 @@ export default function ProductsPage() {
                 description: cellData.description,
             });
         };
+        const deleteHandler = () => {
+            setRows((prev) => prev.filter((item) => item.id !== cellData.id));
+        };
+
         return (
             <div className="w-full h-full items-center flex gap-x-3">
                 <MuiButton color="success" onClick={visitHandler}>
                     Visit
                 </MuiButton>
-                <MuiButton color="error">Delete</MuiButton>
+                <MuiConfrimAlert
+                    header="Delete product"
+                    open={confirmState}
+                    setOpen={setConfirmState}
+                    text="Are you sure you want to delete this product?"
+                    onConfirm={deleteHandler}
+                >
+                    <MuiButton color="error" onClick={() => setConfirmState(true)}>
+                        Delete
+                    </MuiButton>
+                </MuiConfrimAlert>
             </div>
         );
     };
@@ -147,6 +162,7 @@ export default function ProductsPage() {
             cellRenderer: ActionCellComponent,
         },
     ];
+    const [confirmState, setConfirmState] = useState(false);
     return (
         <>
             <form onSubmit={submitHandler} className="grid grid-cols-2 gap-5 p-3">
