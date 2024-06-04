@@ -5,6 +5,7 @@ import Link from "next/link";
 import MuiButton from "@/components/MUI/muiButton";
 import { CustomCellRendererProps } from "ag-grid-react";
 import AgGridComponent from "@/components/dashboard/grid";
+import ProductType from "@/contracts/types/productType";
 const ActionCellComponent = (value: CustomCellRendererProps) => {
     return (
         <div className="w-full h-full items-center flex gap-x-3">
@@ -31,7 +32,7 @@ export default function ProductsPage() {
         ],
         []
     );
-    const [rows, setRows] = useState([
+    const [rows, setRows] = useState<ProductType[]>([
         {
             id: 1,
             title: "Iphone",
