@@ -14,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fa" dir="ltr">
-      <body className={`bg-bgLight dark:bg-bg text-textLight dark:text-text p-5 pr-0`}>
+      <body className={`bg-bgLight dark:bg-bg text-textLight dark:text-text`}>
         {children}
         <ThemeSwitcher />
       </body>

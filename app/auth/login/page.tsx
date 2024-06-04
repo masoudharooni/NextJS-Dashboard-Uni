@@ -25,7 +25,7 @@ function LoginOptionCard({
   imageKey?: React.Key;
 }) {
   return (
-    <button className="flex gap-x-4 px-4 py-2 shadow w-full rounded-[14px] dark:bg-gray-700 ">
+    <button className="hover:scale-105 transition ease-in-out duration-150 delay-75 flex gap-x-4 px-4 py-2 items-center shadow w-full rounded-[14px] dark:bg-gray-700 ">
       <div className="pr-4 mr-4 border-r border-gray-200">
         <Image src={logo} alt={text} key={imageKey} />
       </div>
@@ -56,7 +56,7 @@ export default function LoginPage() {
     <Layout
       placeholderImg={theme === "dark" ? placeholderDarkSvg : placeholderSvg}
     >
-      <div className="flex flex-col gap-y-6">
+      <div className="flex flex-col gap-y-6 pb-10">
         <div className="flex flex-col items-center gap-y-2.5">
           <h1 className="font-vazirBold text-2xl md:text-4xl dark:text-white">
             Login

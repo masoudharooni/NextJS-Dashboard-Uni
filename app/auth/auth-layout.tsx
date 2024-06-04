@@ -9,8 +9,8 @@ type TProps = {
 export default function AuthLayout({ children, placeholderImg }: TProps) {
   return (
     <main className="flex flex-col md:flex-row gap-3 min-h-screen dark:bg-gray-800">
-      <section className="flex justify-center md:items-center md:p-8 md:w-1/2 md:min-h-full">
-        <div className="hidden xl:block w-full h-full bg-gray-50 dark:bg-inherit dark:md:bg-[#39434F] md:rounded-3xl md:px-5 md:py-32">
+      <section className="md:flex-1 flex justify-center md:hidden xl:block md:items-center md:p-8 md:min-h-full">
+        <div className="w-full h-full bg-gray-50 dark:bg-inherit dark:md:bg-[#39434F] md:rounded-3xl md:px-5 md:py-32">
           <Image
             src={placeholderImg}
             alt="placeholder image"
@@ -19,7 +19,7 @@ export default function AuthLayout({ children, placeholderImg }: TProps) {
           />
         </div>
       </section>
-      <section className="p-6 md:p-16 xl:p-32 bg-white dark:bg-[#2A3240] md:dark:bg-inherit shadow-2xl md:shadow-none rounded-t-[34px] md:h-full md:w-1/2">
+      <section className="p-6 md:p-16 xl:p-32 bg-white dark:bg-[#2A3240] md:dark:bg-inherit shadow-2xl md:shadow-none rounded-t-[34px] md:h-full md:flex-1">
         {children}
       </section>
     </main>
