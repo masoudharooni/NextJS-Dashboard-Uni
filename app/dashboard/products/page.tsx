@@ -1,13 +1,46 @@
 "use client";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Search from "@/components/dashboard/users/search";
-import Image from "next/image";
 import Link from "next/link";
-import styles from "@/components/dashboard/users/users.module.css";
-import Pagination from "@/components/dashboard/pagination/pagination";
+import MuiButton from "@/components/MUI/muiButton";
+import { CustomCellRendererProps } from "ag-grid-react";
+import AgGridComponent from "@/components/dashboard/grid";
+const ActionCellComponent = (value: CustomCellRendererProps) => {
+    return (
+        <div className="w-full h-full items-center flex gap-x-3">
+            <MuiButton color="success">Visit</MuiButton>
+            <MuiButton color="error">Delete</MuiButton>
+        </div>
+    );
+};
 export default function ProductsPage() {
     const [search, setSearch] = useState("");
-    const deleteUser = () => { };
+    const colDeps = useMemo(
+        () => [
+            { field: "id" },
+            { field: "title", headerName: "Title" },
+            { field: "description", headerName: "Description" },
+            { field: "price", headerName: "Price" },
+            { field: "created_at", headerName: "Created At" },
+            { field: "amount", headerName: "Amount" },
+            {
+                field: "action",
+                headerName: "Action",
+                cellRenderer: ActionCellComponent,
+            },
+        ],
+        []
+    );
+    const [rows, setRows] = useState([
+        {
+            id: 1,
+            title: "Iphone",
+            description: "A product of Apple",
+            price: "1,300$",
+            created_at: "2024-04-11",
+            amount: 12,
+        },
+    ]);
 
     return (
         <section className="dark:bg-bgSoft bg-bgSoftLight p-5 rounded-[10px] mt-5">
@@ -23,55 +56,9 @@ export default function ProductsPage() {
                     </button>
                 </Link>
             </div>
-            <table className={styles.table}>
-                <thead>
-                    <tr>
-                        <td>title</td>
-                        <td>description</td>
-                        <td>price</td>
-                        <td>created at</td>
-                        <td>amount</td>
-                        <td>operation</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div className={styles.user}>
-                                <Image
-                                    src={"/noproduct.jpg"}
-                                    alt=""
-                                    width={40}
-                                    height={40}
-                                    className={styles.userImage}
-                                />
-                                IPhone
-                            </div>
-                        </td>
-                        <td>description</td>
-                        <td>60,000,000$</td>
-                        <td>13.01.2022</td>
-                        <td>43</td>
-                        <td>
-                            <div className="flex gap-2.5">
-                                <Link href={`/`}>
-                                    <button
-                                        className={`py-[5px] px-[10px] rounded-md dark:text-text text-textLight border-none cursor-pointer dark:bg-teal-700 bg-teal-400`}
-                                    >
-                                        visit
-                                    </button>
-                                </Link>
-                                <button
-                                    className={`py-[5px] px-[10px] rounded-md dark:text-text text-textLight border-none cursor-pointer dark:bg-rose-700 bg-rose-400`}
-                                >
-                                    delete
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <Pagination />
+            <div className="mt-5">
+                <AgGridComponent columnDefs={colDeps} rowData={rows} />
+            </div>
         </section>
     );
 }
