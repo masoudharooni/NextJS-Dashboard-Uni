@@ -4,7 +4,6 @@ import MuiSelect from "@/components/MUI/muiSelect";
 import MuiInput from "@/components/MUI/muiInput";
 import MuiButton from "@/components/MUI/muiButton";
 
-
 type TFromData = {
     title: string;
     category: string;
@@ -32,7 +31,6 @@ export default function AddProductPage() {
         const { name, value } = event.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
-    console.log("formData: ", formData);
     const categoryOpitons = [
         { label: "Electronical", value: 1 },
         { label: "Medical", value: 2 },
@@ -59,11 +57,17 @@ export default function AddProductPage() {
                 name="price"
                 label="Price"
                 type="number"
+                inputProps={{
+                    min: 0,
+                }}
                 placeholder="Please enter the product price"
                 value={formData.price}
                 onChange={changeHandler}
             />
             <MuiInput
+                inputProps={{
+                    min: 0,
+                }}
                 name="stock"
                 label="Stock"
                 type="number"
@@ -79,16 +83,20 @@ export default function AddProductPage() {
                 value={formData.color}
                 onChange={changeHandler}
             />
-            <MuiInput
+            <MuiSelect
                 name="size"
                 label="Size"
-                type="text"
-                placeholder="Please enter the product size"
                 value={formData.size}
+                options={[
+                    { label: "Extra Small", value: "Extra Small" },
+                    { label: "Small", value: "Small" },
+                    { label: "Large", value: "Large" },
+                    { label: "Extra large", value: "Extra large" },
+                ]}
                 onChange={changeHandler}
             />
             <MuiInput
-                className="col-span-2"
+                className="col-span-full"
                 multiline
                 rows={5}
                 name="description"
