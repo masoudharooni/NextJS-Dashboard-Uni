@@ -36,7 +36,7 @@ export default function AddUserPage() {
         { label: "No", value: false },
     ];
     return (
-        <div className="grid md:grid-cols-2 gap-5 md:gap-10 px-5 ">
+        <div className="grid md:grid-cols-2 gap-5 md:gap-10 px-2 md:px-5 ">
             <MuiInput
                 name="username"
                 label="Username"
@@ -45,6 +45,7 @@ export default function AddUserPage() {
                 value={formData.username}
                 onChange={changeHandler}
             />
+
             <MuiInput
                 name="password"
                 label="Password"
@@ -84,7 +85,7 @@ export default function AddUserPage() {
                 onChange={changeHandler}
             />
             <MuiInput
-                className="col-span-2"
+                className="col-span-full"
                 multiline
                 rows={5}
                 name="address"
@@ -94,7 +95,7 @@ export default function AddUserPage() {
                 value={formData.address}
                 onChange={changeHandler}
             />
-            <div className="col-span-full">
+            <div className="col-span-full mb-10">
                 <MuiButton sx={{ width: "100%" }} color="success" variant="contained">
                     Add
                 </MuiButton>

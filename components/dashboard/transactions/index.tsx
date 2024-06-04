@@ -9,10 +9,10 @@ export const Transactions = () => {
             <table className={`w-full ${styles.table}`}>
                 <thead>
                     <tr>
-                        <td>Name</td>
-                        <td>Status</td>
-                        <td>Date</td>
-                        <td>Amount</td>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th className="hidden md:block">Date</th>
+                        <th className="hidden md:block">Amount</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,8 +36,8 @@ export const Transactions = () => {
                                 Pending
                             </span>
                         </td>
-                        <td>1403/02/11</td>
-                        <td>120،000$</td>
+                        <td className="hidden md:block">1403/02/11</td>
+                        <td className="hidden md:block">120،000$</td>
                     </tr>
                     <tr>
                         <td>
@@ -59,8 +59,8 @@ export const Transactions = () => {
                                 Done
                             </span>
                         </td>
-                        <td>1403/02/11</td>
-                        <td>120،000$</td>
+                        <td className="hidden md:block">1403/02/11</td>
+                        <td className="hidden md:block">120،000$</td>
                     </tr>
                     <tr>
                         <td>
@@ -82,8 +82,8 @@ export const Transactions = () => {
                                 Canceled
                             </span>
                         </td>
-                        <td>2024/02/14</td>
-                        <td>120،000$</td>
+                        <td className="hidden md:block">2024/02/14</td>
+                        <td className="hidden md:block">120،000$</td>
                     </tr>
                 </tbody>
             </table>

@@ -40,7 +40,7 @@ export default function UserSinglePage() {
         { label: "No", value: false },
     ];
     return (
-        <div className="flex gap-12 mt-5">
+        <div className="flex flex-col md:flex-row gap-12 mt-5">
             <div className="flex-1 flex flex-col items-center gap-y-3 h-fit dark:bg-bgSoft bg-bgSoftLight p-5 rounded-xl font-bold dark:text-textSoft text-textLight max-h-max">
                 <div className="w-full h-[200px] aspect-square mt-5 flex items-center justify-center">
                     <Image src={"/noavatar.png"} alt="avatar" className="rounded-xl" width={200} height={200} />
@@ -49,7 +49,7 @@ export default function UserSinglePage() {
                     Masoud harooni
                 </span>
             </div>
-            <div className="flex-[3] grid grid-cols-2 gap-5 dark:bg-bgSoft bg-bgSoftLight p-5 rounded-xl">
+            <div className="flex-[3] grid md:grid-cols-2 gap-5 dark:bg-bgSoft bg-bgSoftLight p-5 rounded-xl">
                 <MuiInput
                     name="id"
                     label="id"
@@ -118,7 +118,7 @@ export default function UserSinglePage() {
                     value={formData.address}
                     onChange={changeHandler}
                 />
-                <div className="col-span-full">
+                <div className="col-span-full mb-5">
                     <MuiButton sx={{ width: "100%" }} color="success" variant="contained">
                         Update
                     </MuiButton>

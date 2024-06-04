@@ -12,7 +12,11 @@ export default function UsersPage() {
     return (
         <section className="dark:bg-bgSoft bg-bgSoftLight p-5 rounded-[10px] mt-5">
             <div className="flex justify-between">
-                <Search placeholder="Search a user..." value={search} onChange={(e) => setSearch(e.target.value)} />
+                <Search
+                    placeholder="Search a user..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
                 <Link href="/dashboard/users/add">
                     <button className="p-2.5 text-text bg-[#8e88e7] dark:bg-[#5d57c9] rounded-md">
                         Add
@@ -23,10 +27,10 @@ export default function UsersPage() {
                 <thead>
                     <tr>
                         <td>Name</td>
-                        <td>Email</td>
-                        <td>CreatedAt</td>
-                        <td>Role</td>
-                        <td>Status</td>
+                        <td className="hidden md:block">Email</td>
+                        <td className="hidden md:block">CreatedAt</td>
+                        <td className="hidden md:block">Role</td>
+                        <td className="hidden md:block">Status</td>
                         <td>Action</td>
                     </tr>
                 </thead>
@@ -45,9 +49,9 @@ export default function UsersPage() {
                             </div>
                         </td>
                         <td>masoudharooni</td>
-                        <td>13.01.2022</td>
-                        <td>Admin</td>
-                        <td>Active</td>
+                        <td className="hidden md:block">13.01.2022</td>
+                        <td className="hidden md:block">Admin</td>
+                        <td className="hidden md:block">Active</td>
                         <td>
                             <div className="flex gap-2.5">
                                 <Link href={`/`}>
@@ -67,7 +71,10 @@ export default function UsersPage() {
                     </tr>
                 </tbody>
             </table>
-            <Pagination />
+            <div className="mt-5">
+                <Pagination />
+
+            </div>
         </section>
     );
 }

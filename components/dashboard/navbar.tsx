@@ -1,25 +1,38 @@
 "use client";
 import menuItems from "@/sources/menuItems";
+import { IconButton } from "@mui/material";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { MdNotifications, MdOutlineChat, MdPublic } from "react-icons/md";
-
-export default function Navbar() {
+import { IoMdMenu } from "react-icons/io";
+import useTheme from "@/hooks/useTheme";
+type TProps = {
+    openSidebar: () => void;
+    sidebar: boolean;
+};
+export default function Navbar({ openSidebar, sidebar }: TProps) {
     const [search, setSearch] = useState("");
     const pathname = usePathname();
     const title = menuItems.map((category) =>
         category.list.find((item) => item.path === pathname)
     )[0]?.title;
-    console.log("dashboard: ", title);
+    const theme = useTheme();
     return (
         <nav className="bg-bgSoftLight dark:bg-bgSoft py-2 px-4 rounded-md flex justify-between items-center">
-            <span>{title}</span>
+            <div className="flex items-center gap-x-5">
+                {!sidebar && (
+                    <IconButton onClick={openSidebar}>
+                        <IoMdMenu color={theme === "light" ? "#333" : "#fff"} />
+                    </IconButton>
+                )}
+                <span>{title}</span>
+            </div>
             <ul className="flex gap-x-5 items-center text-textLight dark:text-text">
                 <input
                     placeholder="Search..."
                     id="search"
                     type="search"
-                    className="dark:bg-bg bg-bgLight p-2 rounded-md outline-none"
+                    className="hidden md:block dark:bg-bg bg-bgLight p-2 rounded-md outline-none"
                     name="searchbox"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
