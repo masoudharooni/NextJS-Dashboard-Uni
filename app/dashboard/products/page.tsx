@@ -1,60 +1,232 @@
 "use client";
-import { useMemo, useState } from "react";
-import Search from "@/components/dashboard/users/search";
 import Link from "next/link";
 import MuiButton from "@/components/MUI/muiButton";
 import { CustomCellRendererProps } from "ag-grid-react";
-import AgGridComponent from "@/components/dashboard/grid";
+import productEnumSize from "@/contracts/enums/productSize";
+import productEnumCategories from "@/contracts/enums/productCategories";
 import ProductType from "@/contracts/types/productType";
-const ActionCellComponent = (value: CustomCellRendererProps) => {
+import { FormEvent, useEffect, useState } from "react";
+import productsSource from "@/sources/products";
+import AgGridComponent from "@/components/dashboard/grid";
+import MuiInput from "@/components/MUI/muiInput";
+import MuiSelect from "@/components/MUI/muiSelect";
+
+const ColorCellComponent = (value: CustomCellRendererProps) => {
     return (
-        <div className="w-full h-full items-center flex gap-x-3">
-            <MuiButton color="success">Visit</MuiButton>
-            <MuiButton color="error">Delete</MuiButton>
+        <div
+            style={{ backgroundColor: value.data.color }}
+            className="w-full h-full"
+        ></div>
+    );
+};
+const SizeCellComponent = (value: CustomCellRendererProps) => {
+    return (
+        <div className="w-full h-full flex items-center">
+            {productEnumSize[value.data.size]}
         </div>
     );
 };
-export default function ProductsPage() {
-    const [search, setSearch] = useState("");
-    const colDeps = useMemo(
-        () => [
-            { field: "id" },
-            { field: "title", headerName: "Title" },
-            { field: "description", headerName: "Description" },
-            { field: "price", headerName: "Price" },
-            { field: "created_at", headerName: "Created At" },
-            { field: "amount", headerName: "Amount" },
-            {
-                field: "action",
-                headerName: "Action",
-                cellRenderer: ActionCellComponent,
-            },
-        ],
-        []
-    );
-    const [rows, setRows] = useState<ProductType[]>([
-        {
-            id: 1,
-            title: "Iphone",
-            description: "A product of Apple",
-            price: "1,300$",
-            created_at: "2024-04-11",
-            amount: 12,
-        },
-    ]);
-
+const CategoryCellComponent = (value: CustomCellRendererProps) => {
     return (
-        <section className="dark:bg-bgSoft bg-bgSoftLight p-5 rounded-[10px] mt-5">
-            <div className="flex justify-between">
-                <Link href="/dashboard/products/add">
-                    <button className="p-2.5 text-text bg-[#8e88e7] dark:bg-[#5d57c9] rounded-md">
-                        add
-                    </button>
-                </Link>
+        <div className="w-full h-full flex items-center">
+            {productEnumCategories[value.data.category]}
+        </div>
+    );
+};
+
+type InputChangeEvent = React.ChangeEvent<
+    HTMLInputElement | HTMLTextAreaElement
+>;
+export default function ProductsPage() {
+    const initialFormData = {
+        title: "",
+        category: 0,
+        price: 0,
+        stock: 0,
+        color: "#000",
+        size: 0,
+        description: "",
+    };
+    const [formData, setFormData] =
+        useState<Omit<ProductType, "id">>(initialFormData);
+    const changeHandler = (event: InputChangeEvent) => {
+        const { name, value } = event.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+    const categoryOpitons = [
+        { label: "Electronical", value: productEnumCategories.Electronical },
+        { label: "Medical", value: productEnumCategories.Medical },
+        { label: "Chemestry", value: productEnumCategories.Chemestry },
+    ];
+    const sizeOptions = [
+        { label: "Extra Small", value: productEnumSize.ExtraSmall },
+        { label: "Small", value: productEnumSize.Small },
+        { label: "Large", value: productEnumSize.Large },
+        { label: "Extra large", value: productEnumSize.ExtraLarge },
+    ];
+    const [rows, setRows] = useState<ProductType[]>([]);
+    const [productId, setProductId] = useState<null | number>(null);
+    useEffect(() => {
+        setRows(productsSource);
+    }, []);
+    const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (productId === null) {
+            const data: ProductType = {
+                id: productsSource.length,
+                title: formData.title,
+                category: formData.category,
+                price: +formData.price,
+                stock: +formData.stock,
+                color: formData.color,
+                size: formData.size,
+                description: formData.description,
+            };
+            setRows((prev) => [...prev, data]);
+            setFormData(initialFormData);
+            setProductId(null);
+        } else {
+            console.log("formData: ", formData)
+            const data = {
+                title: formData.title,
+                category: formData.category,
+                price: +formData.price,
+                stock: +formData.stock,
+                color: formData.color,
+                size: formData.size,
+                description: formData.description,
+            };
+            setRows((prev) =>
+                prev.map((item) =>
+                    item.id === productId ? { ...item, ...data } : item
+                )
+            );
+            setFormData(initialFormData);
+            setProductId(null);
+        }
+    };
+    const ActionCellComponent = (value: CustomCellRendererProps) => {
+        const cellData = value.data;
+        const visitHandler = () => {
+            setProductId(cellData.id);
+            setFormData({
+                title: cellData.title,
+                category: cellData.category,
+                price: cellData.price,
+                stock: cellData.stock,
+                color: cellData.color,
+                size: cellData.size,
+                description: cellData.description,
+            });
+        };
+        return (
+            <div className="w-full h-full items-center flex gap-x-3">
+                <MuiButton color="success" onClick={visitHandler}>
+                    Visit
+                </MuiButton>
+                <MuiButton color="error">Delete</MuiButton>
             </div>
-            <div className="mt-5">
-                <AgGridComponent columnDefs={colDeps} rowData={rows} />
+        );
+    };
+    const productColDefs = [
+        { field: "id", hide: true },
+        { field: "title", headerName: "Title" },
+        {
+            field: "category",
+            headerName: "Category",
+            cellRenderer: CategoryCellComponent,
+        },
+        { field: "price", headerName: "Price" },
+        { field: "stock", headerName: "Stock" },
+        { field: "color", headerName: "Color", cellRenderer: ColorCellComponent },
+        { field: "size", headerName: "Size", cellRenderer: SizeCellComponent },
+        { field: "description", headerName: "Description" },
+        {
+            field: "action",
+            headerName: "Action",
+            cellRenderer: ActionCellComponent,
+        },
+    ];
+    return (
+        <>
+            <form onSubmit={submitHandler} className="grid grid-cols-2 gap-5 p-3">
+                <MuiInput
+                    name="title"
+                    label="Title"
+                    type="text"
+                    placeholder="Please enter the product title"
+                    value={formData.title}
+                    onChange={changeHandler}
+                />
+                <MuiSelect
+                    name="category"
+                    label="Category"
+                    value={formData.category}
+                    options={categoryOpitons}
+                    onChange={changeHandler}
+                />
+                <MuiInput
+                    name="price"
+                    label="Price"
+                    type="number"
+                    inputProps={{
+                        min: 0,
+                    }}
+                    placeholder="Please enter the product price"
+                    value={formData.price}
+                    onChange={changeHandler}
+                />
+                <MuiInput
+                    inputProps={{
+                        min: 0,
+                    }}
+                    name="stock"
+                    label="Stock"
+                    type="number"
+                    placeholder="Please enter the product stock"
+                    value={formData.stock}
+                    onChange={changeHandler}
+                />
+                <MuiInput
+                    name="color"
+                    label="Color"
+                    type="color"
+                    placeholder="Please enter the product color"
+                    value={formData.color}
+                    onChange={changeHandler}
+                />
+                <MuiSelect
+                    name="size"
+                    label="Size"
+                    value={formData.size}
+                    options={sizeOptions}
+                    onChange={changeHandler}
+                />
+                <MuiInput
+                    className="col-span-full"
+                    multiline
+                    rows={5}
+                    name="description"
+                    label="Description"
+                    type="text"
+                    placeholder="Please enter something about the product..."
+                    value={formData.description}
+                    onChange={changeHandler}
+                />
+                <div className="col-span-full mb-10">
+                    <MuiButton
+                        type="submit"
+                        sx={{ width: "100%" }}
+                        color="success"
+                        variant="contained"
+                    >
+                        {productId === null ? "Add" : "update"}
+                    </MuiButton>
+                </div>
+            </form>
+            <div className="mt-5 px-5">
+                <AgGridComponent columnDefs={productColDefs} rowData={rows} />
             </div>
-        </section>
+        </>
     );
 }
