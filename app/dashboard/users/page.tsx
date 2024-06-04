@@ -1,14 +1,76 @@
 "use client";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Search from "@/components/dashboard/users/search";
-import Image from "next/image";
 import Link from "next/link";
-import styles from "@/components/dashboard/users/users.module.css";
-import Pagination from "@/components/dashboard/pagination/pagination";
+import AgGridComponent from "@/components/dashboard/grid";
+import { CustomCellRendererProps } from "ag-grid-react";
+import MuiButton from "@/components/MUI/muiButton";
+const StatusCellComponent = (value: CustomCellRendererProps) => (
+    <div className="w-full h-full py-3 flex items-center pr-3">
+        <MuiButton color={value.data.status ? "success" : "error"}>
+            {value.data.status ? "Active" : "Not Active"}
+        </MuiButton>
+    </div>
+);
+const ActionCellComponent = (value: CustomCellRendererProps) => {
+    return (
+        <div className="w-full h-full items-center flex gap-x-3">
+            <MuiButton color="success">Visit</MuiButton>
+            <MuiButton color="error">Delete</MuiButton>
+        </div>
+    );
+};
 export default function UsersPage() {
     const [search, setSearch] = useState("");
-    const deleteUser = () => { };
-
+    const colDefs = useMemo(
+        () => [
+            { field: "id", hide: true },
+            { field: "name", headerName: "Name" },
+            { field: "email", headerName: "Email" },
+            { field: "created_at", headerName: "Created at" },
+            { field: "role", headerName: "Role" },
+            {
+                field: "status",
+                headerName: "Status",
+                cellRenderer: StatusCellComponent,
+            },
+            {
+                field: "action",
+                headerName: "Action",
+                cellRenderer: ActionCellComponent,
+            },
+        ],
+        []
+    );
+    const [rowData, setRowData] = useState([
+        {
+            id: 1,
+            name: "Masoud Harooni",
+            email: "masoudharooni@gmail.com",
+            created_at: "2015-02-13",
+            role: "Admin",
+            status: true,
+            action: "action",
+        },
+        {
+            id: 2,
+            name: "Masoud Harooni2",
+            email: "masoudharooni@gmail.com2",
+            created_at: "2015-02-13",
+            role: "Admin",
+            status: false,
+            action: "action",
+        },
+        {
+            id: 3,
+            name: "Masoud Haroon3",
+            email: "masoudharooni@gmail.co3",
+            created_at: "2015-02-13",
+            role: "Admin",
+            status: true,
+            action: "action",
+        },
+    ]);
     return (
         <section className="dark:bg-bgSoft bg-bgSoftLight p-5 rounded-[10px] mt-5">
             <div className="flex justify-between">
@@ -23,57 +85,8 @@ export default function UsersPage() {
                     </button>
                 </Link>
             </div>
-            <table className={styles.table}>
-                <thead>
-                    <tr>
-                        <td>Name</td>
-                        <td className="hidden md:block">Email</td>
-                        <td className="hidden md:block">CreatedAt</td>
-                        <td className="hidden md:block">Role</td>
-                        <td className="hidden md:block">Status</td>
-                        <td>Action</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div className={styles.user}>
-                                <Image
-                                    src={"/noavatar.png"}
-                                    alt=""
-                                    width={40}
-                                    height={40}
-                                    className={styles.userImage}
-                                />
-                                {/* {user.username} */}
-                            </div>
-                        </td>
-                        <td>masoudharooni</td>
-                        <td className="hidden md:block">13.01.2022</td>
-                        <td className="hidden md:block">Admin</td>
-                        <td className="hidden md:block">Active</td>
-                        <td>
-                            <div className="flex gap-2.5">
-                                <Link href={`/`}>
-                                    <button
-                                        className={`py-[5px] px-[10px] rounded-md dark:text-text text-textLight border-none cursor-pointer dark:bg-teal-700 bg-teal-400`}
-                                    >
-                                        View
-                                    </button>
-                                </Link>
-                                <button
-                                    className={`py-[5px] px-[10px] rounded-md dark:text-text text-textLight border-none cursor-pointer dark:bg-rose-700 bg-rose-400`}
-                                >
-                                    Delete
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
             <div className="mt-5">
-                <Pagination />
-
+                <AgGridComponent columnDefs={colDefs} rowData={rowData} />
             </div>
         </section>
     );
