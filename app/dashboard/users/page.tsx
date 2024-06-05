@@ -8,6 +8,7 @@ import usersSource from "@/sources/users";
 import MuiInput from "@/components/MUI/muiInput";
 import MuiSelect from "@/components/MUI/muiSelect";
 import MuiConfrimAlert from "@/components/MUI/muiConfirmAlert";
+import { Alert } from "@mui/material";
 const StatusCellComponent = (value: CustomCellRendererProps) => (
     <div className="w-full h-full py-3 flex items-center pr-3">
         <MuiButton color={value.data.status ? "success" : "error"}>
@@ -36,7 +37,17 @@ type TFromData = {
 type InputChangeEvent = React.ChangeEvent<
     HTMLInputElement | HTMLTextAreaElement
 >;
+
+type TAlert = {
+    message: string;
+    type: "error" | "info" | "success" | "warning";
+};
+
 export default function UserPage() {
+    const [alert, setAlert] = useState<TAlert>({
+        message: "",
+        type: "error",
+    });
     const [rowData, setRowData] = useState<UserType[]>([]);
     const [userId, setUserId] = useState<null | number>(null);
     const initFormData = {
@@ -64,6 +75,18 @@ export default function UserPage() {
 
     const submitHandler = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const existingUser = usersSource.find(
+            (user) =>
+                user.email === formData.email || user.username === formData.username
+        );
+        if (existingUser) {
+            return setAlert((prev) => ({
+                ...prev,
+                message: "This username or email already exists:(",
+            }));
+        }
+
+        // add a user
         if (userId === null) {
             const data: UserType = {
                 id: usersSource.length,
@@ -78,7 +101,13 @@ export default function UserPage() {
             setRowData((prev) => [...prev, data]);
             setFormData(initFormData);
             setUserId(null);
-        } else {
+            return setAlert(() => ({
+                type: 'success',
+                message: "User added successfully :)",
+            }));
+        }
+        // update an existing user
+        else {
             const data = {
                 username: formData.username,
                 password: formData.password,
@@ -93,6 +122,10 @@ export default function UserPage() {
             );
             setFormData(initFormData);
             setUserId(null);
+            return setAlert(() => ({
+                type: 'success',
+                message: "User updated successfully :)",
+            }));
         }
     };
     const ActionCellComponent = (value: CustomCellRendererProps) => {
@@ -153,6 +186,15 @@ export default function UserPage() {
     ];
     return (
         <>
+            {!!alert.message && (
+                <Alert
+                    onClose={() => setAlert((prev) => ({ ...prev, message: "" }))}
+                    variant="filled"
+                    severity={alert.type}
+                >
+                    {alert.message}
+                </Alert>
+            )}
             <form
                 onSubmit={submitHandler}
                 className="grid md:grid-cols-2 gap-5 md:gap-10 px-2 md:px-5 "
