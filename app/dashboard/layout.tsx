@@ -11,7 +11,7 @@ export default function DashboardLayoutPage({
     const [sidebar, setSidebar] = useState(false);
     const [widthVP] = useWindowSize();
     useEffect(() => {
-        if (widthVP < 768) {
+        if (widthVP < 1025) {
             setSidebar(false);
         } else {
             setSidebar(true);

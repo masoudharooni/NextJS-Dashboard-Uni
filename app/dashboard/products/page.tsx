@@ -167,6 +167,7 @@ export default function ProductsPage() {
         <>
             <form onSubmit={submitHandler} className="grid grid-cols-2 gap-5 p-3">
                 <MuiInput
+                    required
                     name="title"
                     label="Title"
                     type="text"
@@ -175,6 +176,7 @@ export default function ProductsPage() {
                     onChange={changeHandler}
                 />
                 <MuiSelect
+                    required
                     name="category"
                     label="Category"
                     value={formData.category}
@@ -182,6 +184,7 @@ export default function ProductsPage() {
                     onChange={changeHandler}
                 />
                 <MuiInput
+                    required
                     name="price"
                     label="Price"
                     type="number"
@@ -193,6 +196,7 @@ export default function ProductsPage() {
                     onChange={changeHandler}
                 />
                 <MuiInput
+                    required
                     inputProps={{
                         min: 0,
                     }}
@@ -204,6 +208,7 @@ export default function ProductsPage() {
                     onChange={changeHandler}
                 />
                 <MuiInput
+                    required
                     name="color"
                     label="Color"
                     type="color"
@@ -212,6 +217,7 @@ export default function ProductsPage() {
                     onChange={changeHandler}
                 />
                 <MuiSelect
+                    required
                     name="size"
                     label="Size"
                     value={formData.size}
@@ -219,6 +225,7 @@ export default function ProductsPage() {
                     onChange={changeHandler}
                 />
                 <MuiInput
+                    required
                     className="col-span-full"
                     multiline
                     rows={5}

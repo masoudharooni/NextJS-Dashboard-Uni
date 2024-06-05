@@ -158,6 +158,7 @@ export default function UserPage() {
                 className="grid md:grid-cols-2 gap-5 md:gap-10 px-2 md:px-5 "
             >
                 <MuiInput
+                    required
                     label="Id"
                     type="number"
                     value={userId}
@@ -166,6 +167,7 @@ export default function UserPage() {
                 />
 
                 <MuiInput
+                    required
                     name="username"
                     label="Username"
                     type="text"
@@ -175,6 +177,7 @@ export default function UserPage() {
                 />
 
                 <MuiInput
+                    required
                     name="password"
                     label="Password"
                     type="password"
@@ -183,6 +186,7 @@ export default function UserPage() {
                     onChange={changeHandler}
                 />
                 <MuiInput
+                    required
                     name="email"
                     label="Email"
                     type="email"
@@ -191,6 +195,7 @@ export default function UserPage() {
                     onChange={changeHandler}
                 />
                 <MuiInput
+                    required
                     name="phone"
                     label="Phone Number"
                     type="tel"
@@ -199,6 +204,7 @@ export default function UserPage() {
                     onChange={changeHandler}
                 />
                 <MuiSelect
+                    required
                     name="isAdmin"
                     label="Is admin?"
                     value={formData.isAdmin}
@@ -206,6 +212,7 @@ export default function UserPage() {
                     onChange={changeHandler}
                 />
                 <MuiSelect
+                    required
                     name="isActive"
                     label="Is active?"
                     value={formData.isActive}
@@ -213,6 +220,7 @@ export default function UserPage() {
                     onChange={changeHandler}
                 />
                 <MuiInput
+                    required
                     className="col-span-full"
                     multiline
                     rows={5}
