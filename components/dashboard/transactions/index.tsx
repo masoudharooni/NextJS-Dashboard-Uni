@@ -1,92 +1,53 @@
-import Image from "next/image";
-import styles from "./transactions.module.css";
+"use client";
+import { CustomCellRendererProps } from "ag-grid-react";
+import productEnumSize from "@/contracts/enums/productSize";
+import productEnumCategories from "@/contracts/enums/productCategories";
+import AgGridComponent from "../grid";
+import productsSource from "@/sources/products";
+const ColorCellComponent = (value: CustomCellRendererProps) => {
+    return (
+        <div
+            style={{ backgroundColor: value.data.color }}
+            className="w-full h-full"
+        ></div>
+    );
+};
+const SizeCellComponent = (value: CustomCellRendererProps) => {
+    return (
+        <div className="w-full h-full flex items-center">
+            {productEnumSize[value.data.size]}
+        </div>
+    );
+};
+const CategoryCellComponent = (value: CustomCellRendererProps) => {
+    return (
+        <div className="w-full h-full flex items-center">
+            {productEnumCategories[value.data.category]}
+        </div>
+    );
+};
+const productColDefs = [
+    { field: "id", hide: true },
+    { field: "title", headerName: "Title" },
+    {
+        field: "category",
+        headerName: "Category",
+        cellRenderer: CategoryCellComponent,
+    },
+    { field: "price", headerName: "Price" },
+    { field: "stock", headerName: "Stock" },
+    { field: "color", headerName: "Color", cellRenderer: ColorCellComponent },
+    { field: "size", headerName: "Size", cellRenderer: SizeCellComponent },
+    { field: "description", headerName: "Description" },
+];
 export const Transactions = () => {
     return (
         <section className="py-3 px-5 rounded-[10px] dark:bg-bgSoft bg-bgSoftLight">
             <h2 className="mb-3 font-extralight dark:text-textSoft text-textSoftLight">
-                Latest Transactions
+                The most popular products
             </h2>
-            <table className={`w-full ${styles.table}`}>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Status</th>
-                        <th className="hidden md:block">Date</th>
-                        <th className="hidden md:block">Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div className="flex gap-2.5 items-center">
-                                <Image
-                                    src="/noavatar.png"
-                                    alt="User Avatar"
-                                    width={40}
-                                    height={40}
-                                    className="object-cover rounded-full"
-                                />
-                                Masoud Harooni
-                            </div>
-                        </td>
-                        <td>
-                            <span
-                                className={`dark:text-text text-textLight ${styles.pending} ${styles.status}`}
-                            >
-                                Pending
-                            </span>
-                        </td>
-                        <td className="hidden md:block">1403/02/11</td>
-                        <td className="hidden md:block">120،000$</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div className="flex gap-2.5 items-center">
-                                <Image
-                                    src="/noavatar.png"
-                                    alt="User Avatar"
-                                    width={40}
-                                    height={40}
-                                    className="object-cover rounded-full"
-                                />
-                                Masoud Harooni
-                            </div>
-                        </td>
-                        <td>
-                            <span
-                                className={`dark:text-text text-textLight ${styles.done} ${styles.status}`}
-                            >
-                                Done
-                            </span>
-                        </td>
-                        <td className="hidden md:block">1403/02/11</td>
-                        <td className="hidden md:block">120،000$</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div className="flex gap-2.5 items-center">
-                                <Image
-                                    src="/noavatar.png"
-                                    alt="User Avatar"
-                                    width={40}
-                                    height={40}
-                                    className="object-cover rounded-full"
-                                />
-                                Masoud Harooni
-                            </div>
-                        </td>
-                        <td>
-                            <span
-                                className={`dark:text-text text-textLight ${styles.cancel} ${styles.status}`}
-                            >
-                                Canceled
-                            </span>
-                        </td>
-                        <td className="hidden md:block">2024/02/14</td>
-                        <td className="hidden md:block">120،000$</td>
-                    </tr>
-                </tbody>
-            </table>
+
+            <AgGridComponent columnDefs={productColDefs} rowData={productsSource}  />
         </section>
     );
 };

@@ -1,5 +1,6 @@
 "use client";
 import useTheme from "@/hooks/useTheme";
+import { dashboardChartSource } from "@/sources/dashboard";
 import React from "react";
 import {
   LineChart,
@@ -12,43 +13,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
-  {
-    name: "Monday",
-    visit: 3490,
-    click: 4300,
-  },
-  {
-    name: "Tuesday",
-    visit: 4000,
-    click: 2400,
-  },
-  {
-    name: "Wednesday",
-    visit: 3000,
-    click: 1398,
-  },
-  {
-    name: "Thursday",
-    visit: 2000,
-    click: 3800,
-  },
-  {
-    name: "Friday",
-    visit: 2780,
-    click: 3908,
-  },
-  {
-    name: "Saturday",
-    visit: 1890,
-    click: 4800,
-  },
-  {
-    name: "Sunday",
-    visit: 2390,
-    click: 3800,
-  },
-];
+
 export const Chart = () => {
   const theme = useTheme();
   console.log("theme: ", theme);
@@ -61,7 +26,7 @@ export const Chart = () => {
         <LineChart
           width={500}
           height={300}
-          data={data}
+          data={dashboardChartSource}
           margin={{
             top: 5,
             right: 30,

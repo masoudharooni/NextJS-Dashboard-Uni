@@ -19,7 +19,7 @@ export default function AgGridComponent(props: AgGridReactProps) {
     return (
         <div
             className={theme === "dark" ? "ag-theme-quartz-dark" : "ag-theme-quartz"}
-            style={{ height: 500 }}
+            style={{ height: 300 }}
         >
             <AgGridReact
                 rowData={props.rowData}
