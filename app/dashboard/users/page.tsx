@@ -75,19 +75,19 @@ export default function UserPage() {
 
     const submitHandler = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const existingUser = usersSource.find(
+        const existingUser = usersSource.filter(
             (user) =>
                 user.email === formData.email || user.username === formData.username
         );
-        if (existingUser) {
-            return setAlert((prev) => ({
-                ...prev,
-                message: "This username or email already exists:(",
-            }));
-        }
 
         // add a user
         if (userId === null) {
+            if (existingUser.length > 0) {
+                return setAlert((prev) => ({
+                    ...prev,
+                    message: "This username or email already exists:(",
+                }));
+            }
             const data: UserType = {
                 id: usersSource.length,
                 username: formData.username,
@@ -102,12 +102,18 @@ export default function UserPage() {
             setFormData(initFormData);
             setUserId(null);
             return setAlert(() => ({
-                type: 'success',
+                type: "success",
                 message: "User added successfully :)",
             }));
         }
         // update an existing user
         else {
+            if (existingUser.length > 1) {
+                return setAlert(() => ({
+                    type: "error",
+                    message: "This username or email address already exists:(",
+                }));
+            }
             const data = {
                 username: formData.username,
                 password: formData.password,
@@ -123,7 +129,7 @@ export default function UserPage() {
             setFormData(initFormData);
             setUserId(null);
             return setAlert(() => ({
-                type: 'success',
+                type: "success",
                 message: "User updated successfully :)",
             }));
         }
