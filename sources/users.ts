@@ -10,6 +10,7 @@ const usersSource: UserType[] = [
     role: true,
     status: true,
     address: "iran",
+    birthdate: "",
   },
   {
     id: 1,
@@ -20,6 +21,7 @@ const usersSource: UserType[] = [
     role: true,
     status: false,
     address: "iran",
+    birthdate: "2024-08-11",
   },
   {
     id: 2,
@@ -30,6 +32,7 @@ const usersSource: UserType[] = [
     role: true,
     status: true,
     address: "iran",
+    birthdate: ""
   },
 ];
 

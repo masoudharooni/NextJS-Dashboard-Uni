@@ -7,6 +7,7 @@ type UserType = {
   role: boolean;
   status: boolean;
   address: string;
+  birthdate: string;
 };
 
 export default UserType;

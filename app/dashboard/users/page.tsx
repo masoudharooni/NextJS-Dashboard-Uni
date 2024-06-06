@@ -32,6 +32,7 @@ type TFromData = {
     isAdmin: boolean;
     isActive: boolean;
     address: string;
+git     birthdate: string;
 };
 
 type InputChangeEvent = React.ChangeEvent<
@@ -58,6 +59,7 @@ export default function UserPage() {
         isAdmin: true,
         isActive: true,
         address: "",
+        birthdate: "",
     };
     const [formData, setFormData] = useState<TFromData>(initFormData);
     const changeHandler = (event: InputChangeEvent) => {
@@ -97,7 +99,9 @@ export default function UserPage() {
                 role: formData.isAdmin,
                 status: formData.isActive,
                 address: formData.address,
+                birthdate: formData.birthdate,
             };
+
             setRowData((prev) => [...prev, data]);
             setFormData(initFormData);
             setUserId(null);
@@ -122,6 +126,7 @@ export default function UserPage() {
                 role: formData.isAdmin,
                 status: formData.isActive,
                 address: formData.address,
+                birthdate: formData.birthdate,
             };
             setRowData((prev) =>
                 prev.map((item) => (item.id === userId ? { ...item, ...data } : item))
@@ -146,6 +151,7 @@ export default function UserPage() {
                 isAdmin: cellData.role,
                 isActive: cellData.status,
                 address: cellData.address,
+                birthdate: cellData.birthdate,
             });
         };
         const deleteHandler = () => {
@@ -179,6 +185,8 @@ export default function UserPage() {
         { field: "phone", headerName: "Phone" },
         { field: "role", headerName: "Role", cellRenderer: RoleCellComponent },
         { field: "address", headerName: "Address" },
+        { field: "birthdate", headerName: "Birthdate" },
+
         {
             field: "status",
             headerName: "Status",
@@ -249,6 +257,15 @@ export default function UserPage() {
                     type="tel"
                     placeholder="Please enter the Phone Number"
                     value={formData.phone}
+                    onChange={changeHandler}
+                />
+                <MuiInput
+                    required
+                    name="birthdate"
+                    label="Birthdate"
+                    type="date"
+                    placeholder="Please enter Your birrhdate"
+                    value={formData.birthdate}
                     onChange={changeHandler}
                 />
                 <MuiSelect
