@@ -32,7 +32,7 @@ type TFromData = {
     isAdmin: boolean;
     isActive: boolean;
     address: string;
-git     birthdate: string;
+    birthdate: string;
 };
 
 type InputChangeEvent = React.ChangeEvent<
